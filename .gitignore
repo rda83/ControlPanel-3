@@ -1,0 +1,28 @@
+# Общие правила для всех проектов
+.DS_Store
+Thumbs.db
+*.user
+*.suo
+*.log
+*.swp
+*.swo
+
+# Исключаем папки зависимостей
+**/bin/
+**/obj/
+**/node_modules/
+**/dist/
+**/.angular/
+**/.vs/
+**/.vscode/
+**/.idea/
+
+# Файлы окружения (если есть)
+.env
+*.env.local
+*.env.*.local
+
+# Файлы сборки/кеша
+*.tmp
+*.temp
+*.bak

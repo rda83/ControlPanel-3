@@ -1,0 +1,23 @@
+<div class='card'>
+    <table  *ngIf='weatherForecasts.length'>
+        <tr>
+            <th>Date</th>
+            <th>Temperature (°C)</th>
+            <th>Temperature (°F)</th>
+            <th>Summary</th>
+        </tr>
+        <tbody>
+            <tr *ngFor='let weatherForecast of weatherForecasts'>
+                <td>{{weatherForecast.date}}</td>
+                <td>{{weatherForecast.temperatureC}}</td>
+                <td>{{weatherForecast.temperatureF}}</td>
+                <td  [class.bracing]="weatherForecast.summary === 'Bracing'" 
+                     [class.mild]="weatherForecast.summary === 'Mild'"
+                     [class.chilly]="weatherForecast.summary === 'Chilly'"
+                     [class.scorching]="weatherForecast.summary === 'Scorching'">
+                     {{weatherForecast.summary}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

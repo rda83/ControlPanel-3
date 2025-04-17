@@ -1,0 +1,6 @@
+@ControlPanel.Server.Api_HostAddress = http://localhost:5232
+
+GET {{ControlPanel.Server.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
