@@ -8,7 +8,7 @@ import { IWeatherForecast } from "./weather-forecast";
     providedIn: 'root'
 })
 export class WeatherForecastService {
-    private productUrl = 'http://localhost:5232/WeatherForecast';
+    private productUrl = '/api/WeatherForecast';
 
     constructor(private http: HttpClient){ }
 
