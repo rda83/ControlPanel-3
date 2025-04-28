@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
+  standalone: true,
   selector: 'app-intg-federal-districts',
   imports: [],
   templateUrl: './intg-federal-districts.component.html',

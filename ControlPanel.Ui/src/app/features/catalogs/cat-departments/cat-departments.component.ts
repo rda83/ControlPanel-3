@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
+  standalone: true,
   selector: 'app-cat-departments',
   imports: [],
   templateUrl: './cat-departments.component.html',

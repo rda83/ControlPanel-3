@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
+  standalone: true,
   selector: 'app-intg-products',
   imports: [],
   templateUrl: './intg-products.component.html',
