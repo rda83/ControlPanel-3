@@ -1,0 +1,9 @@
+<div class="app-container">
+    <app-header [routerTokens]="ROUTER_TOKENS" (childEvent)="handleEvent($event)"></app-header>
+    <div class="content-wrapper">
+        <app-sidebar [currentItem]="currentItem"></app-sidebar>
+        <main class="main-content">
+            <router-outlet></router-outlet>
+        </main>
+    </div>
+</div>

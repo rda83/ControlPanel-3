@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { ROUTER_TOKENS } from '../../../app.routes';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { RouteInfo } from '../../../app.routes';
 import { RouterLink, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
@@ -11,18 +11,10 @@ import { CommonModule } from '@angular/common';
 })
 export class HeaderComponent {
 
-  isMenuOpen = false;
-  activeMainItem: string | null = null;
+  @Input() routerTokens: {[key: string]: RouteInfo} | undefined;
+  @Output() childEvent = new EventEmitter<string | null>();
 
-  readonly ROUTER_TOKENS = ROUTER_TOKENS;
-
-  constructor(){}
-
-  toggleMenu(): void {
-    this.isMenuOpen = !this.isMenuOpen;
-  }
-
-  setActiveItem(item: string | null): void {
-    this.activeMainItem = item;
+  setActiveItem(item: string | null): void {   
+    this.childEvent.emit(item);
   }
 }

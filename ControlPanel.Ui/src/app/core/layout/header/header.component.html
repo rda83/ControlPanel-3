@@ -1,17 +1,11 @@
-<div class="app-container">
-    <nav class="header">
-        <div class="header-container">
-        <!-- <a class="logo" routerLink="/">My App</a> -->
-        
-        <!-- <button class="menu-button" (click)="toggleMenu()">
-            <span class="menu-icon">☰</span>
-        </button> -->
-        
-        <div class="nav-links" [class.open]="isMenuOpen">
+<nav class="header">
+    <div class="header-container">
+        <!-- <a class="logo" routerLink="/">My App</a> -->       
+        <div class="nav-links">
             <ul>
-                <li *ngFor="let item of ROUTER_TOKENS | keyvalue">
+                <li *ngFor="let item of routerTokens | keyvalue">
                     <a 
-                        routerLink="[item.value.path]" 
+                        routerLink={{item.value.path}} 
                         routerLinkActive="active"
                         (click)="setActiveItem(item.key)"
                     >
@@ -24,31 +18,5 @@
             <button class="register-btn">Регистрация</button>
             </div> -->
         </div>
-        </div>        
-    </nav>
-
-    <div class="content-wrapper">
-        <aside class="sidebar" *ngIf="activeMainItem">
-        
-        <!-- <h3>{{activeMainItem === 'products' ? 'Продукты' : 
-            activeMainItem === 'about' ? 'О нас' : 'Контакты'}}</h3> -->
-        
-        <ul>
-            <li *ngFor="let item of ROUTER_TOKENS[activeMainItem].children | keyvalue">
-                <a 
-                    [routerLink] = "[ROUTER_TOKENS[activeMainItem].path, item.value.path]" 
-                    routerLinkActive="active"
-                >
-                    {{item.value.title}}
-                </a>
-            </li>
-        </ul>
-        </aside>
-
-        <main class="main-content">
-            <router-outlet></router-outlet>
-        </main>
-    </div>
-</div>
-
-
+    </div>        
+</nav>
