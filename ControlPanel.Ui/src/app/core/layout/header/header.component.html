@@ -1,1 +1,54 @@
-<p>header works!</p>
+<div class="app-container">
+    <nav class="header">
+        <div class="header-container">
+        <!-- <a class="logo" routerLink="/">My App</a> -->
+        
+        <!-- <button class="menu-button" (click)="toggleMenu()">
+            <span class="menu-icon">☰</span>
+        </button> -->
+        
+        <div class="nav-links" [class.open]="isMenuOpen">
+            <ul>
+                <li *ngFor="let item of ROUTER_TOKENS | keyvalue">
+                    <a 
+                        routerLink="[item.value.path]" 
+                        routerLinkActive="active"
+                        (click)="setActiveItem(item.key)"
+                    >
+                        {{item.value.title}}
+                    </a>
+                </li>
+            </ul>          
+            <!-- <div class="auth-buttons">
+            <button class="login-btn">Войти</button>    
+            <button class="register-btn">Регистрация</button>
+            </div> -->
+        </div>
+        </div>        
+    </nav>
+
+    <div class="content-wrapper">
+        <aside class="sidebar" *ngIf="activeMainItem">
+        
+        <!-- <h3>{{activeMainItem === 'products' ? 'Продукты' : 
+            activeMainItem === 'about' ? 'О нас' : 'Контакты'}}</h3> -->
+        
+        <ul>
+            <li *ngFor="let item of ROUTER_TOKENS[activeMainItem].children | keyvalue">
+                <a 
+                    [routerLink] = "[ROUTER_TOKENS[activeMainItem].path, item.value.path]" 
+                    routerLinkActive="active"
+                >
+                    {{item.value.title}}
+                </a>
+            </li>
+        </ul>
+        </aside>
+
+        <main class="main-content">
+            <router-outlet></router-outlet>
+        </main>
+    </div>
+</div>
+
+
