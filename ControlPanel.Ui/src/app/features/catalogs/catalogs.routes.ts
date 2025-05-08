@@ -6,9 +6,12 @@ import { CatFederalDistrictsComponent } from './cat-federal-districts/cat-federa
 import { CatProductsComponent } from './cat-products/cat-products.component';
 import { CatRegionsComponent } from './cat-regions/cat-regions.component';
 import { ROUTER_TOKENS } from '../../app.routes';
+import { CatCityDetailComponent } from './cat-city-detail/cat-city-detail.component';
 
 export const CATALOGS_ROUTES: Routes = [
     { path: ROUTER_TOKENS["CATALOGS"].children!["CAT_CITIES"].path, component:  CatCitiesComponent },
+    { path: `${ROUTER_TOKENS["CATALOGS"].children!["CAT_CITIES"].path}/:id`, component:  CatCityDetailComponent },
+
     { path: ROUTER_TOKENS["CATALOGS"].children!["CAT_DEPARTMENTS"].path, component:  CatDepartmentsComponent },
     { path: ROUTER_TOKENS["CATALOGS"].children!["CAT_EMPLOYEES"].path, component:  CatEmployeesComponent },
     { path: ROUTER_TOKENS["CATALOGS"].children!["CAT_FEDERAL_DISTRICTS"].path, component:  CatFederalDistrictsComponent },

@@ -1,0 +1,6 @@
+<p>cat-city-detail works!</p>
+<div *ngIf="city">
+    <h3>{{ city.name }}</h3>
+    <p>ID: {{ city.id }}</p>
+    <a [routerLink]="['/catalogs/cities']">Back to list</a>
+  </div>

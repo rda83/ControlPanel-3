@@ -1,1 +1,6 @@
 <p>cat-cities works!</p>
+<ul>
+    <li *ngFor="let city of cities">
+      <a [routerLink]="['/catalogs/cities', city.id]">{{ city.name }}</a>
+    </li>
+  </ul>
