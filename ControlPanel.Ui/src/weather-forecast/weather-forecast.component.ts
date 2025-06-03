@@ -4,6 +4,7 @@ import { IWeatherForecast } from './weather-forecast';
 import { Subscription } from 'rxjs';
 import { WeatherForecastService } from './weather-forecast.service';
 
+
 @Component({
   selector: 'app-weather-forecast',
   imports: [CommonModule],
@@ -21,13 +22,8 @@ export class WeatherForecastComponent  implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.sub = this.weatherForecastService.getWeatherForecasts().subscribe({
       next: weatherForecasts => {
-
-        
-
         this.weatherForecasts = weatherForecasts;
-
         console.log(this.weatherForecasts);
-
       },
       error: err => this.errorMessage = err 
     });
