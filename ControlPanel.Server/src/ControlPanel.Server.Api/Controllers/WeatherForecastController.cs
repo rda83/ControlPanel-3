@@ -1,10 +1,11 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
 
 namespace ControlPanel.Server.Api.Controllers;
 
 [ApiController]
-[Authorize]
+//[Authorize]
 [Route("[controller]")]
 public class WeatherForecastController : ControllerBase
 {
@@ -30,5 +31,25 @@ public class WeatherForecastController : ControllerBase
             Summary = Summaries[Random.Shared.Next(Summaries.Length)]
         })
         .ToArray();
+    }
+
+    [HttpPost(Name = "PostWeatherForecast")]
+    public async Task<IActionResult> Post()
+    {
+        using (var reader = new StreamReader(Request.Body))
+        {
+            string rawJson = await reader.ReadToEndAsync();
+            Console.WriteLine(rawJson);
+            var data = JObject.Parse(rawJson);
+
+        }
+
+        //return Ok(new PostResponse());
+        return BadRequest(new PostResponse() { Status = "logic error" });
+    }
+
+    class PostResponse
+    {
+        public string Status { get; set; } = "success";
     }
 }

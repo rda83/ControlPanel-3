@@ -1,5 +1,86 @@
 <div class='card'>
-    <p>weatherForecasts</p>
+    <p>!!!!!!!!!!!!!!!!!weatherForecasts</p>
+
+    <div class="container">
+        <h2>User settings</h2>
+        <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+            
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input 
+                    id="name" 
+                    name="name" 
+                    class="form-control" 
+                    placeholder="Name" [(ngModel)] = "userSettings.name"
+                    required
+                    #nameField="ngModel"/>
+
+
+                <div *ngIf="nameField.invalid && nameField.touched" class="error-message">
+                    <div *ngIf="nameField.errors?.['required']">Поле обязательно!</div>
+                </div>
+
+            </div>
+
+            <div class="form-check form-group">
+                <input class="form-check-input" type="checkbox"
+                    id="emailOffers" name="emailOffers" [(ngModel)] = "userSettings.emailOffers"/>
+                <label class="form-check-label" for="emailOffers">
+                    Email Special Offers
+                </label>
+            </div>
+
+            <div class="form-group">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio"
+                        id="lightInterface" name="interfaceStyle" value="light" checked [(ngModel)] = "userSettings.interfaceStyle"/>
+
+                    <label class="form-check-label" for="lightInterface">
+                        Light
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio"
+                        id="mediumInterface" name="interfaceStyle" value="medium" checked [(ngModel)] = "userSettings.interfaceStyle"/>
+
+                    <label class="form-check-label" for="mediumInterface">
+                        Medium
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio"
+                        id="darkInterface" name="interfaceStyle" value="dark" checked [(ngModel)] = "userSettings.interfaceStyle"/>
+
+                    <label class="form-check-label" for="darkInterface">
+                        Dark
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="subscriptionType">Subscription type</label>
+                <select class="form-control" id="subscriptionType" name="subscriptionType" [(ngModel)] = "userSettings.subscriptionType">
+                    <option *ngFor="let type of subscriptionTypes | async">
+                        {{type}}
+                    </option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="notes">Notes</label>
+                <textarea id="notes" name="notes" class="form-control" rows="3" [(ngModel)] = "userSettings.notes"></textarea>
+            </div>
+
+            <div [hidden]="!postError" class = "alert alert-danger">
+                <h1>{{ postErrorMessage }}</h1>
+            </div>
+            <h1>{{ postErrorMessage }}</h1> 
+            <button class="btn btn-primary">Send</button>
+        </form>
+    </div>
+
+
+
     <table  *ngIf='weatherForecasts.length'>
         <tr>
             <th>Date</th>
@@ -21,4 +102,6 @@
             </tr>
         </tbody>
     </table>
+
+    {{ form.value | json }}
 </div>
