@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { WeatherForecastComponent } from '../weather-forecast/weather-forecast.component';
+import { EditContactComponent } from '../edit-contact/edit-contact.component';
 
 
 export interface RouteInfo {
@@ -178,7 +179,8 @@ export interface RouteInfo {
   } as const;
 
 export const routes: Routes = [
-    { path: '', component: WeatherForecastComponent },
+    // { path: '', component: WeatherForecastComponent },
+    { path: '', component: EditContactComponent },
     
     { path: ROUTER_TOKENS["CALCULATION_SYSTEMS"].path, loadChildren: () => 
         import('./features/calculation-systems/calculation-systems.routes').then(m => m.CALCULATION_SYSTEMS_ROUTES) },
