@@ -1,16 +1,19 @@
-import { Component, inject, signal } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { Component, inject, OnDestroy, signal } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { CommonModule } from '@angular/common';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-login',
-  imports: [],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
-export class LoginComponent {
+export class LoginComponent  implements OnDestroy {
+
+   private destroy$ = new Subject<void>();
 
   private fb = inject(FormBuilder);
   private authService = inject(AuthService);
@@ -32,7 +35,7 @@ export class LoginComponent {
 
     const { email, password } = this.loginForm.value;
 
-    this.authService.login(email!, password!).pipe(takeUntilDestroyed()).subscribe({
+    this.authService.login(email!, password!).pipe(takeUntil(this.destroy$)).subscribe({
       next: () => {
         this.router.navigate(['/']);
       },
@@ -44,5 +47,10 @@ export class LoginComponent {
         this.isLoading.set(false);
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

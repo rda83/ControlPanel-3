@@ -24,7 +24,7 @@ export class AuthService {
     }
 
     login(email: string, password: string): Observable<{ token: string }> {
-        return this.http.post<{ token: string }>('/api/auth/login', { email, password }).pipe(
+        return this.http.post<{ token: string }>('http://localhost:5232/api/Auth/login', { email, password }).pipe(
             tap(response => {
                 const decoded: any = jwtDecode(response.token);
                 const user: User = {
