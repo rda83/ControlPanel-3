@@ -20,7 +20,7 @@ export class LoginComponent  implements OnDestroy {
   private router = inject(Router);
 
   loginForm = this.fb.group({
-    email: ['', [Validators.required, Validators.email]],
+    username: ['', Validators.required],
     password: ['', Validators.required]
   });
 
@@ -33,9 +33,9 @@ export class LoginComponent  implements OnDestroy {
     this.isLoading.set(true);
     this.errorMessage.set(null);
 
-    const { email, password } = this.loginForm.value;
+    const { username, password } = this.loginForm.value;
 
-    this.authService.login(email!, password!).pipe(takeUntil(this.destroy$)).subscribe({
+    this.authService.login(username!, password!).pipe(takeUntil(this.destroy$)).subscribe({
       next: () => {
         this.router.navigate(['/']);
       },

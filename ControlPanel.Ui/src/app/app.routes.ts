@@ -180,10 +180,10 @@ export interface RouteInfo {
   } as const;
 
 export const routes: Routes = [
-    // { path: '', component: WeatherForecastComponent },
+    { path: '', component: WeatherForecastComponent },
     // { path: '', component: EditContactComponent },
-    { path: '', component: LoginComponent },
-
+    
+    { path: 'login', component: LoginComponent },
 
     { path: ROUTER_TOKENS["CALCULATION_SYSTEMS"].path, loadChildren: () => 
         import('./features/calculation-systems/calculation-systems.routes').then(m => m.CALCULATION_SYSTEMS_ROUTES) },

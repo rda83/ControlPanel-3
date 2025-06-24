@@ -1,6 +1,7 @@
 export interface User {
-    id: string;
-    email: string;
     name: string;
-    roles: string[];
+    exp?: number; // Срок действия
+    aud?: string[] | string;
+    iss?: string;
+    jti?: string;
 }
