@@ -1,7 +1,8 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, computed, EventEmitter, Input, Output } from '@angular/core';
 import { RouteInfo } from '../../../app.routes';
-import { RouterLink, RouterModule } from '@angular/router';
+import { Router, RouterLink, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -13,6 +14,19 @@ export class HeaderComponent {
 
   @Input() routerTokens: {[key: string]: RouteInfo} | undefined;
   @Output() childEvent = new EventEmitter<string | null>();
+
+  user = computed(() => this.authService.state().user);
+  isAuthenticated = computed(() => this.authService.state().isAuthenticated);
+
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) {}
+
+  logout(): void {
+    this.authService.logout();
+    this.router.navigate(['/login']);
+  }
 
   setActiveItem(item: string | null): void {   
     this.childEvent.emit(item);
