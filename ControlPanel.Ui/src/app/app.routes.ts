@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { WeatherForecastComponent } from '../weather-forecast/weather-forecast.component';
 import { EditContactComponent } from '../edit-contact/edit-contact.component';
 import { LoginComponent } from './core/auth/login/login.component';
+import { AuthGuard } from './core/guards/auth.guard';
 
 
 export interface RouteInfo {
@@ -180,10 +181,13 @@ export interface RouteInfo {
   } as const;
 
 export const routes: Routes = [
+    
+    { path: 'login', component: LoginComponent },
+
     { path: '', component: WeatherForecastComponent },
     // { path: '', component: EditContactComponent },
     
-    { path: 'login', component: LoginComponent },
+    
 
     { path: ROUTER_TOKENS["CALCULATION_SYSTEMS"].path, loadChildren: () => 
         import('./features/calculation-systems/calculation-systems.routes').then(m => m.CALCULATION_SYSTEMS_ROUTES) },

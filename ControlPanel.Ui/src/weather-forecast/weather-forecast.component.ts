@@ -37,19 +37,19 @@ export class WeatherForecastComponent  implements OnInit, OnDestroy {
 
   constructor(private weatherForecastService: WeatherForecastService){}
 
-  onSubmit(form: NgForm) {
+  // onSubmit(form: NgForm) {
 
-    if (form.valid) {
-      this.weatherForecastService.postUserSettingsForm(this.userSettings)
-        .subscribe(result => console.log('success:', result), error => this.onHttpError(error));
-    } else {
-      this.postError = true;
-      this.postErrorMessage = "Please fix the errors.";
-    }
+  //   if (form.valid) {
+  //     this.weatherForecastService.postUserSettingsForm(this.userSettings)
+  //       .subscribe(result => console.log('success:', result), error => this.onHttpError(error));
+  //   } else {
+  //     this.postError = true;
+  //     this.postErrorMessage = "Please fix the errors.";
+  //   }
 
 
 
-  }
+  // }
 
   onHttpError(errorResponse: any) {
     console.log("error2", errorResponse);

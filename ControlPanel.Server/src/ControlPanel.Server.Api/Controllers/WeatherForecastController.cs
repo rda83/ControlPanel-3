@@ -5,7 +5,7 @@ using Newtonsoft.Json.Linq;
 namespace ControlPanel.Server.Api.Controllers;
 
 [ApiController]
-//[Authorize]
+[Authorize]
 [Route("[controller]")]
 public class WeatherForecastController : ControllerBase
 {
