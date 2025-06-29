@@ -1,6 +1,6 @@
 
-using ControlPanel.Server.Api.Database;
-using ControlPanel.Server.Api.Database.Entities;
+using ControlPanel.Server.Api.App.Entities.Auth;
+using ControlPanel.Server.Api.App.Shared.Storage;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;

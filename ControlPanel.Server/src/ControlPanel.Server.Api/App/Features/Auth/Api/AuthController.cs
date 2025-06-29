@@ -1,5 +1,5 @@
-﻿using ControlPanel.Server.Api.Database.Entities;
-using ControlPanel.Server.Api.Models.Identity;
+﻿using ControlPanel.Server.Api.App.Entities.Auth;
+using ControlPanel.Server.Api.App.Features.Auth.Model;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -7,7 +7,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace ControlPanel.Server.Api.Controllers
+namespace ControlPanel.Server.Api.App.Features.Auth.Api
 {
     [ApiController]
     [Route("api/[controller]")]
@@ -94,7 +94,7 @@ namespace ControlPanel.Server.Api.Controllers
                     authClaims.Add(new Claim(ClaimTypes.Role, userRole));
                 }
 
-                var tokenExpiryMinutes = _configuration.GetValue<int>("JWT:ExpiryInMinutes", 180);
+                var tokenExpiryMinutes = _configuration.GetValue("JWT:ExpiryInMinutes", 180);
                 var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Key"]));
 
                 var token = new JwtSecurityToken(
