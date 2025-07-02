@@ -1,10 +1,12 @@
 
+using ControlPanel.Server.Api.App.Config;
 using ControlPanel.Server.Api.App.Entities.Auth;
 using ControlPanel.Server.Api.App.Shared.Storage;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using System.Reflection;
 using System.Text;
 
 namespace ControlPanel.Server.Api
@@ -66,6 +68,9 @@ namespace ControlPanel.Server.Api
                     }
                 };
             });
+
+            builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            builder.Services.AddFeatures();
 
             var app = builder.Build();
 

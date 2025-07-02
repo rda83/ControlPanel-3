@@ -63,17 +63,17 @@ export class WeatherForecastComponent  implements OnInit, OnDestroy {
 
 
 
-    this.sub = this.weatherForecastService.getWeatherForecasts().subscribe({
-      next: weatherForecasts => {
-        this.weatherForecasts = weatherForecasts;
-        console.log(this.weatherForecasts);
-      },
-      error: err => this.errorMessage = err 
-    });
+    // this.sub = this.weatherForecastService.getWeatherForecasts().subscribe({
+    //   next: weatherForecasts => {
+    //     this.weatherForecasts = weatherForecasts;
+    //     console.log(this.weatherForecasts);
+    //   },
+    //   error: err => this.errorMessage = err 
+    // });
 
   }
 
   ngOnDestroy(): void {
-    this.sub.unsubscribe();
+    // this.sub.unsubscribe();
   }
 }
