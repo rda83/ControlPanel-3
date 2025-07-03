@@ -3,10 +3,11 @@ import { RouteInfo } from '../../../app.routes';
 import { Router, RouterLink, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../auth/auth.service';
+import { ClrAlertModule } from '@clr/angular'; 
 
 @Component({
   selector: 'app-header',
-  imports: [CommonModule, RouterLink, RouterModule],
+  imports: [CommonModule, RouterLink, RouterModule, ClrAlertModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
