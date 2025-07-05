@@ -1,9 +1,0 @@
-<clr-vertical-nav *ngIf="currentItem">
-
-    <a *ngFor="let item of currentItem.children | keyvalue" 
-        clrVerticalNavLink
-        [routerLink] = "[currentItem.path, item.value.path]"
-        >
-            {{item.value.title}}
-    </a>
-</clr-vertical-nav>
