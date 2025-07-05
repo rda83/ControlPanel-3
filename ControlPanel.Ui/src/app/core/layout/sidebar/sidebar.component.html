@@ -1,16 +1,9 @@
-<aside class="sidebar" *ngIf="currentItem">
-        
-    <!-- <h3>{{activeMainItem === 'products' ? 'Продукты' : 
-        activeMainItem === 'about' ? 'О нас' : 'Контакты'}}</h3> -->
-    
-    <ul>
-        <li *ngFor="let item of currentItem.children | keyvalue">
-            <a 
-                [routerLink] = "[currentItem.path, item.value.path]" 
-                routerLinkActive="active"
-            >
-                {{item.value.title}}
-            </a>
-        </li>
-    </ul>
-</aside>
+<clr-vertical-nav *ngIf="currentItem">
+
+    <a *ngFor="let item of currentItem.children | keyvalue" 
+        clrVerticalNavLink
+        [routerLink] = "[currentItem.path, item.value.path]"
+        >
+            {{item.value.title}}
+    </a>
+</clr-vertical-nav>

@@ -1,40 +1,35 @@
-<nav class="header">
-    <div class="header-container">
-        <!-- <a class="logo" routerLink="/">My App</a> -->       
-        <div class="nav-links">
 
-            <!-- <clr-alert [clrAlertType]="'warning'">
-                <clr-alert-item>Это предупреждение от Clarity!</clr-alert-item>
-            </clr-alert>
-            <button class="btn btn-primary">Кнопка Clarity</button>
-
-            <clr-alert [clrAlertType]="'warning'">
-                <clr-alert-item>Теперь анимации работают!</clr-alert-item>
-            </clr-alert> -->
-
-            <ul>
-                <li *ngFor="let item of routerTokens | keyvalue">
-                    <a 
-                        routerLink={{item.value.path}} 
-                        routerLinkActive="active"
-                        (click)="setActiveItem(item.key)"
-                    >
-                        {{item.value.title}}
-                    </a>
-                </li>
-            </ul>          
-
-            <div class="user-section">
-                <div *ngIf="isAuthenticated()">
-                    <span>Hello, {{ user()?.name }}</span>
-                    <button (click)="logout()">Logout</button>
-                </div>
-                
-                <div *ngIf="!isAuthenticated()">
-                    <a routerLink="/login">Login</a>
-                </div>
-            </div>
-
+<header class="header-6">
+    <div class="branding">
+        <a href="javascript://">
+        <cds-icon shape="vm-bug"></cds-icon>
+        <span class="title">Control panel UI</span>
+        </a>
+    </div>
+    <div class="settings">
+        <a href="javascript://" class="nav-link nav-icon">
+        <cds-icon shape="cog"></cds-icon>
+        </a>
+    </div>
+    <div class="user-section">
+        <div *ngIf="isAuthenticated()">
+            <span>Hello, {{ user()?.name }}</span>
+            <button (click)="logout()">Logout</button>
         </div>
-    </div>        
+        
+        <div *ngIf="!isAuthenticated()">
+            <a routerLink="/login">Login</a>
+        </div>
+    </div>
+</header>
+<nav class="subnav">
+    <ul class="nav">
+        <li *ngFor="let item of routerTokens | keyvalue" class="nav-item">
+        <a class="nav-link" 
+            routerLink={{item.value.path}}
+            (click)="setActiveItem(item.key)">
+                {{item.value.title}}
+            </a> 
+        </li>
+    </ul>
 </nav>

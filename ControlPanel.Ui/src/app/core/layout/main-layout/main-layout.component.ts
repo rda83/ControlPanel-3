@@ -3,10 +3,13 @@ import { HeaderComponent } from "../header/header.component";
 import { RouterModule } from '@angular/router';
 import { SidebarComponent } from "../sidebar/sidebar.component";
 import { RouteInfo, ROUTER_TOKENS } from '../../../app.routes';
+import { ClarityModule } from '@clr/angular';
+
+
 
 @Component({
   selector: 'app-main-layout',
-  imports: [HeaderComponent, RouterModule, SidebarComponent],
+  imports: [HeaderComponent, RouterModule, SidebarComponent, ClarityModule],
   templateUrl: './main-layout.component.html',
   styleUrl: './main-layout.component.css'
 })
