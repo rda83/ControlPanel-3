@@ -9,4 +9,5 @@ export interface Product {
   updatedAt?: Date;
   imageUrl: string;
   rating?: number;
+  color: string;
 }

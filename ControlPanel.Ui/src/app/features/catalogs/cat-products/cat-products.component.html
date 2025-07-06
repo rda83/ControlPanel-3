@@ -9,6 +9,7 @@
     <clr-dg-column>Обновлен</clr-dg-column>
     <clr-dg-column>Ссылка</clr-dg-column>
     <clr-dg-column>Оценка</clr-dg-column>
+    <clr-dg-column>Цвет</clr-dg-column>
 
     <clr-dg-row *ngFor="let product of products">
         <clr-dg-cell>{{ product.id }}</clr-dg-cell>
@@ -21,6 +22,9 @@
         <clr-dg-cell>{{ product.updatedAt | date }}</clr-dg-cell>
         <clr-dg-cell>{{ product.imageUrl }}</clr-dg-cell>
         <clr-dg-cell>{{ product.rating }}</clr-dg-cell>
+        <clr-dg-cell>
+            <span class="color-square" [style.backgroundColor]="product.color"></span>
+        </clr-dg-cell>
     </clr-dg-row>
 
     <clr-dg-footer>{{ products.length }} products</clr-dg-footer>
