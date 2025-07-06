@@ -1,9 +1,9 @@
 <clr-datagrid>
     <clr-dg-column>Ид</clr-dg-column>
-    <clr-dg-column>Наименование</clr-dg-column>
-    <clr-dg-column>Описание</clr-dg-column>
+    <clr-dg-column [clrDgField]="'name'">Наименование</clr-dg-column>
+    <clr-dg-column [clrDgField]="'description'">Описание</clr-dg-column>
     <clr-dg-column>Цена</clr-dg-column>
-    <clr-dg-column>Остаток</clr-dg-column>
+    <clr-dg-column [clrDgField]="'stockQuantity'" [clrDgColType]="'number'">Остаток</clr-dg-column>
     <clr-dg-column>Активный</clr-dg-column>
     <clr-dg-column>Создан</clr-dg-column>
     <clr-dg-column>Обновлен</clr-dg-column>
@@ -11,7 +11,7 @@
     <clr-dg-column>Оценка</clr-dg-column>
     <clr-dg-column>Цвет</clr-dg-column>
 
-    <clr-dg-row *ngFor="let product of products">
+    <clr-dg-row *clrDgItems="let product of products">
         <clr-dg-cell>{{ product.id }}</clr-dg-cell>
         <clr-dg-cell>{{ product.name }}</clr-dg-cell>
         <clr-dg-cell>{{ product.description }}</clr-dg-cell>
