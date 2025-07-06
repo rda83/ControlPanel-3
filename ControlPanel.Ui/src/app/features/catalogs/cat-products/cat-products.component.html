@@ -1,1 +1,27 @@
-<p>cat-products works!</p>
+<clr-datagrid>
+    <clr-dg-column>Ид</clr-dg-column>
+    <clr-dg-column>Наименование</clr-dg-column>
+    <clr-dg-column>Описание</clr-dg-column>
+    <clr-dg-column>Цена</clr-dg-column>
+    <clr-dg-column>Остаток</clr-dg-column>
+    <clr-dg-column>Активный</clr-dg-column>
+    <clr-dg-column>Создан</clr-dg-column>
+    <clr-dg-column>Обновлен</clr-dg-column>
+    <clr-dg-column>Ссылка</clr-dg-column>
+    <clr-dg-column>Оценка</clr-dg-column>
+
+    <clr-dg-row *ngFor="let product of products">
+        <clr-dg-cell>{{ product.id }}</clr-dg-cell>
+        <clr-dg-cell>{{ product.name }}</clr-dg-cell>
+        <clr-dg-cell>{{ product.description }}</clr-dg-cell>
+        <clr-dg-cell>{{ product.price }}</clr-dg-cell>
+        <clr-dg-cell>{{ product.stockQuantity }}</clr-dg-cell>
+        <clr-dg-cell>{{ product.isActive }}</clr-dg-cell>
+        <clr-dg-cell>{{ product.createdAt | date }}</clr-dg-cell>
+        <clr-dg-cell>{{ product.updatedAt | date }}</clr-dg-cell>
+        <clr-dg-cell>{{ product.imageUrl }}</clr-dg-cell>
+        <clr-dg-cell>{{ product.rating }}</clr-dg-cell>
+    </clr-dg-row>
+
+    <clr-dg-footer>{{ products.length }} products</clr-dg-footer>
+</clr-datagrid>
