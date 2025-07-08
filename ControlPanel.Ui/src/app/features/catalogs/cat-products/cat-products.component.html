@@ -1,6 +1,14 @@
 <clr-datagrid>
     <clr-dg-column>Ид</clr-dg-column>
-    <clr-dg-column [clrDgField]="'name'">Наименование</clr-dg-column>
+
+    <clr-dg-column 
+        [clrDgField]="'name'" 
+        [clrDgSortBy]="productComparator"
+    >
+        Наименование
+    </clr-dg-column>
+    
+    
     <clr-dg-column [clrDgField]="'description'">Описание</clr-dg-column>
     <clr-dg-column>Цена</clr-dg-column>
     <clr-dg-column [clrDgField]="'stockQuantity'" [clrDgColType]="'number'">Остаток</clr-dg-column>
