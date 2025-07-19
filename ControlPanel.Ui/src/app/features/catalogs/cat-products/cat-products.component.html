@@ -1,39 +1,48 @@
-<clr-datagrid>
-    <clr-dg-column>Ид</clr-dg-column>
+<div class="card">
+  <div class="card-footer">
+    <button class="btn" (click)="refresh()">Reload Datagrid</button>
+  </div>
+</div>
 
-    <clr-dg-column 
-        [clrDgField]="'name'" 
-        [clrDgSortBy]="productComparator"
-    >
-        Наименование
-    </clr-dg-column>
-    
-    
-    <clr-dg-column [clrDgField]="'description'">Описание</clr-dg-column>
+<clr-datagrid
+  *ngIf="{ products: products | async }; let data"
+  [clrDgLoading]="loading"
+  [clrLoadingMoreItems]="loadingMoreItems"
+  (clrDgRefresh)="refresh($event)"
+  style="height: 100%;"
+>
+    <clr-dg-column>Ид</clr-dg-column>
+    <clr-dg-column>Наименование</clr-dg-column>
+    <clr-dg-column>Описание</clr-dg-column>
     <clr-dg-column>Цена</clr-dg-column>
-    <clr-dg-column [clrDgField]="'stockQuantity'" [clrDgColType]="'number'">Остаток</clr-dg-column>
+    <clr-dg-column>Остаток</clr-dg-column>
     <clr-dg-column>Активный</clr-dg-column>
     <clr-dg-column>Создан</clr-dg-column>
     <clr-dg-column>Обновлен</clr-dg-column>
     <clr-dg-column>Ссылка</clr-dg-column>
     <clr-dg-column>Оценка</clr-dg-column>
-    <clr-dg-column>Цвет</clr-dg-column>
 
-    <clr-dg-row *clrDgItems="let product of products">
-        <clr-dg-cell>{{ product.id }}</clr-dg-cell>
-        <clr-dg-cell>{{ product.name }}</clr-dg-cell>
-        <clr-dg-cell>{{ product.description }}</clr-dg-cell>
-        <clr-dg-cell>{{ product.price }}</clr-dg-cell>
-        <clr-dg-cell>{{ product.stockQuantity }}</clr-dg-cell>
-        <clr-dg-cell>{{ product.isActive }}</clr-dg-cell>
-        <clr-dg-cell>{{ product.createdAt | date }}</clr-dg-cell>
-        <clr-dg-cell>{{ product.updatedAt | date }}</clr-dg-cell>
-        <clr-dg-cell>{{ product.imageUrl }}</clr-dg-cell>
-        <clr-dg-cell>{{ product.rating }}</clr-dg-cell>
-        <clr-dg-cell>
-            <span class="color-square" [style.backgroundColor]="product.color"></span>
-        </clr-dg-cell>
-    </clr-dg-row>
+    <ng-template
+        *ngIf="data.products"
+        ClrVirtualScroll
+        let-product
+        [clrVirtualRowsOf]="data.products"
+        (renderedRangeChange)="renderRangeChange($event)"
+    >
+        <clr-dg-row [clrDgItem]="product">
+            <clr-dg-cell>{{ product.id }}</clr-dg-cell>
+            <clr-dg-cell>{{ product.name }}</clr-dg-cell>
+            <clr-dg-cell>{{ product.description }}</clr-dg-cell>
+            <clr-dg-cell>{{ product.price }}</clr-dg-cell>
+            <clr-dg-cell>{{ product.stockQuantity }}</clr-dg-cell>
+            <clr-dg-cell>{{ product.isActive }}</clr-dg-cell>
+            <clr-dg-cell>{{ product.createdAt | date }}</clr-dg-cell>
+            <clr-dg-cell>{{ product.updatedAt | date }}</clr-dg-cell>
+            <clr-dg-cell>{{ product.imageUrl }}</clr-dg-cell>
+            <clr-dg-cell>{{ product.rating }}</clr-dg-cell>
+        </clr-dg-row>
 
-    <clr-dg-footer>{{ products.length }} products</clr-dg-footer>
+    </ng-template>
+    <clr-dg-footer>{{ data.products?.length }} products</clr-dg-footer>
 </clr-datagrid>
+

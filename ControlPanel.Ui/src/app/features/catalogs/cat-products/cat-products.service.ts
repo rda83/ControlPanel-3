@@ -1,34 +1,56 @@
 import { Injectable } from "@angular/core";
-
-
-import PRODUCTS_ITEMS from './products-items.json';
 import { Product } from "./models/product";
-import { BehaviorSubject } from "rxjs";
+import { BehaviorSubject, Observable } from "rxjs";
+import { HttpClient, HttpParams } from "@angular/common/http";
 
 @Injectable()
 export class ProductsService {
-
+    
     size = 100;
-
     private _all: Product[] = [];
-    private _currentQuery: Product[] | undefined;
+    get all(): Product[] { return this._all; }
+    set all(value) { this._all = value; }
+
     private allVirtualScrollProducts = new BehaviorSubject<Product[]>(this.all);
 
-    get all(): Product[] {
-        return this._all;
+    // private productUrl = '/api/Product';
+    private productUrl = 'http://localhost:5232/api/Product';
+
+    constructor(private http: HttpClient) {}
+
+    getAllProductsSubject() { return this.allVirtualScrollProducts; }
+
+    lazyLoadProducts(size = this.size) {
+        this.getProducts(this._all.length, size).subscribe(newProducts => {
+            this.all = [...this._all, ...newProducts];
+            this.allVirtualScrollProducts.next(this.all);
+        });
     }
 
-    reset(useInventory: boolean = true) {
-        if (useInventory) {
-            
-            this._all = PRODUCTS_ITEMS.slice(0, this.size).map((item: any) => ({
-                ...item,
-                createdAt: new Date(item.createdAt),
-                updatedAt: item.updatedAt ? new Date(item.updatedAt) : null
-            }));            
-        } else {
-            // this._all = [];
-            // this._all = this._all.concat(this.createUsers());
+    getProducts(
+        skip: number,
+        take: number,
+        sortField?: string,
+        sortOrder?: string,
+        filters?: any): Observable<Product[]> {
+
+        let params = new HttpParams().set('skip', skip.toString())
+            .set('take', take.toString());
+
+        if (sortField && sortOrder) {
+            params = params
+                .set('sortField', sortField)
+                .set('sortOrder', sortOrder);
         }
+
+        if (filters) {
+            Object.keys(filters).forEach(key => {
+            if (filters[key] !== null && filters[key] !== undefined) {
+                params = params.set(key, filters[key]);
+            }
+            });
+        }
+
+        return this.http.get<Product[]>(this.productUrl, { params });
     }
 }

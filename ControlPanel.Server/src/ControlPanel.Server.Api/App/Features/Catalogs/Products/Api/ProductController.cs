@@ -18,10 +18,17 @@ namespace ControlPanel.Server.Api.App.Features.Catalogs.Products.Api
 
         [HttpGet]
         [Authorize]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery] int skip = 1,
+            [FromQuery] int take = 20)
         {
+            // TODO:
+            // - пагинация
+            // - сортировка
+            // - фильтрация
+            // - обрезка (только нужные данные)
+
             var result = await _productService.GetAllAsync();
-            return Ok(result);
+            return Ok(result.OrderBy(i => i.Id).Skip(skip).Take(take));
         }
 
         [HttpPost]
@@ -29,6 +36,14 @@ namespace ControlPanel.Server.Api.App.Features.Catalogs.Products.Api
         public async Task<IActionResult> Post([FromBody] ProductDto dto)
         {
             await _productService.PostAsync(dto);
+            return Ok();
+        }
+
+        [HttpPost("seedTestData")]
+        [Authorize]
+        public async Task<IActionResult> SeedTestData([FromBody] SeedTestDataRequest request)
+        {
+            await _productService.SeedTestData(request);
             return Ok();
         }
     }

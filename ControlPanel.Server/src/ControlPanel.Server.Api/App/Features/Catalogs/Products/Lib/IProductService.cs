@@ -6,5 +6,6 @@ namespace ControlPanel.Server.Api.App.Features.Catalogs.Products.Lib
     {
         Task<List<ProductDto>> GetAllAsync();
         Task PostAsync(ProductDto dto);
+        Task SeedTestData(SeedTestDataRequest request);
     }
 }

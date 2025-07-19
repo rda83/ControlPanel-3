@@ -12,7 +12,7 @@ import { UserSettnigs } from "./models/user-settings";
 export class WeatherForecastService {
 
     // private productUrl = '/api/WeatherForecast';
-    private productUrl = 'http://localhost:5232/WeatherForecast';
+    private productUrl = 'http://localhost:5232/api/Product';
 
     constructor(private http: HttpClient){ }
 
