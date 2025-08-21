@@ -34,6 +34,9 @@ export class ProductsService {
         sortOrder?: string,
         filters?: any): Observable<Product[]> {
 
+        console.log("getProductsclrDgItems");
+
+
         let params = new HttpParams().set('skip', skip.toString())
             .set('take', take.toString());
 

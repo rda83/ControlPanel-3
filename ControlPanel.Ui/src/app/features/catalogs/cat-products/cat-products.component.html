@@ -1,14 +1,14 @@
 <div class="card">
   <div class="card-footer">
-    <button class="btn" (click)="refresh()">Reload Datagrid</button>
+    <button class="btn" (click)="reset()">Reload Datagrid</button>
   </div>
 </div>
 
 <clr-datagrid
+  #myDatagrid
   *ngIf="{ products: products | async }; let data"
   [clrDgLoading]="loading"
   [clrLoadingMoreItems]="loadingMoreItems"
-  (clrDgRefresh)="refresh($event)"
   style="height: 100%;"
 >
     <clr-dg-column>Ид</clr-dg-column>

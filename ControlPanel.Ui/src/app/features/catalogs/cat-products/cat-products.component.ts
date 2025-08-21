@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Product } from './models/product';
 import {  
+  ClrDatagrid,
   ClrDatagridModule, 
   ClrDatagridStateInterface, 
   ClrFormsModule, 
@@ -48,6 +49,7 @@ export class CatProductsComponent implements  OnInit, OnDestroy {
   products: Observable<Product[]>;
   private subscribe: Subscription | undefined;
   
+  @ViewChild('myDatagrid') datagrid: ClrDatagrid | undefined;
 
   constructor(public productsService: ProductsService, private cdr: ChangeDetectorRef) {
     
@@ -56,13 +58,15 @@ export class CatProductsComponent implements  OnInit, OnDestroy {
     this.products = this.productsService.getAllProductsSubject().asObservable();
   }
 
-  refresh(state?: ClrDatagridStateInterface) {
+  reset() {
+
+    console.log(this.datagrid);
+
     this.loading = true;
     this.productsService.all = [];
     this.productsService.size = this.currentPageSize * 3;
     this.productsService.lazyLoadProducts(this.productsService.size);
     this.loading = false;
-    this.cdr.detectChanges();
   }
 
   renderRangeChange($event: ListRange) { this.loadMore($event); }
