@@ -28,6 +28,8 @@ namespace ControlPanel.Server.Api.App.Features.Catalogs.Products.Api
             // - обрезка (только нужные данные)
 
             var result = await _productService.GetAllAsync();
+
+            //return NotFound();
             return Ok(result.OrderBy(i => i.Id).Skip(skip).Take(take));
         }
 

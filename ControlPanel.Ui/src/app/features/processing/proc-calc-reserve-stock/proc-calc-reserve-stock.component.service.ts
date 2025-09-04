@@ -1,12 +1,10 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable, tap } from "rxjs";
+import { catchError, Observable, of, tap } from "rxjs";
 import { Product } from "../../catalogs/cat-products/models/product";
 
 @Injectable()
 export class CalcReserveStockService {
-
-
 
     private productUrl = 'http://localhost:5232/api/Product';
 
@@ -16,6 +14,11 @@ export class CalcReserveStockService {
         return this.http.get<Product[]>(this.productUrl)
         .pipe(
             tap(() => console.log('In http.get pipeline 1')),
+            catchError(err => {
+                throw "ERROR";
+                // console.error(err);
+                // return of([]);
+            }),
         );
     }
 
