@@ -14,6 +14,8 @@ import { CommonModule } from '@angular/common';
 })
 export class ProcCalcReserveStockComponent {
 
+
+
   private calcReserveStock = inject(CalcReserveStockService);
 
   readonly products$ = this.calcReserveStock.products$.pipe(
@@ -23,6 +25,12 @@ export class ProcCalcReserveStockComponent {
           return EMPTY;
         }),
       );
+  
+  readonly selectedProductId$ = this.calcReserveStock.productSelected$
+
+  onSelected(arg0: number) {
+    this.calcReserveStock.productSelected(arg0);
+  }
 
   errorMessage = "";
   

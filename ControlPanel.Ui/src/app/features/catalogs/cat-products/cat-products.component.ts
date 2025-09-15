@@ -47,7 +47,7 @@ export class CatProductsComponent implements  OnInit, OnDestroy {
   currentPageSize = 100;
   
   products: Observable<Product[]>;
-  private subscribe: Subscription | undefined;
+  // private subscribe: Subscription | undefined;
   
   @ViewChild('myDatagrid') datagrid: ClrDatagrid | undefined;
 
@@ -58,21 +58,21 @@ export class CatProductsComponent implements  OnInit, OnDestroy {
     this.products = this.productsService.getAllProductsSubject().asObservable();
   }
 
-  reset() {
+  // reset() {
 
-    console.log(this.datagrid);
+  //   console.log(this.datagrid);
 
-    this.loading = true;
-    this.productsService.all = [];
-    this.productsService.size = this.currentPageSize * 3;
-    this.productsService.lazyLoadProducts(this.productsService.size);
-    this.loading = false;
-  }
+  //   this.loading = true;
+  //   this.productsService.all = [];
+  //   this.productsService.size = this.currentPageSize * 3;
+  //   this.productsService.lazyLoadProducts(this.productsService.size);
+  //   this.loading = false;
+  // }
 
-  renderRangeChange($event: ListRange) { this.loadMore($event); }
+  renderRangeChange($event: ListRange) { 
+    
+    // this.loadMore($event);
 
-  loadMore($event: ListRange) {
- 
     if (this.loadingMoreItems 
       || $event.end + this.currentPageSize < this.productsService.size - this.currentPageSize / 2) {
         return;
@@ -82,14 +82,30 @@ export class CatProductsComponent implements  OnInit, OnDestroy {
     this.productsService.size += this.currentPageSize;
     this.productsService.lazyLoadProducts(this.currentPageSize);
     this.loadingMoreItems = false;
-    this.cdr.detectChanges();
+  
   }
+
+  // loadMore($event: ListRange) {
+ 
+  //   if (this.loadingMoreItems 
+  //     || $event.end + this.currentPageSize < this.productsService.size - this.currentPageSize / 2) {
+  //       return;
+  //   }
+
+  //   this.loadingMoreItems = true;
+  //   this.productsService.size += this.currentPageSize;
+  //   this.productsService.lazyLoadProducts(this.currentPageSize);
+  //   this.loadingMoreItems = false;
+  //   // this.cdr.detectChanges();
+  // }
 
   ngOnInit(): void {
-    this.subscribe = this.products.subscribe(() => {
-      this.cdr.detectChanges();
-    });
+    // this.subscribe = this.products.subscribe(() => {
+    //   // this.cdr.detectChanges();
+    // });
   }
 
-  ngOnDestroy(): void { this.subscribe?.unsubscribe(); }
+  ngOnDestroy(): void { 
+    // this.subscribe?.unsubscribe(); 
+  }
 }
