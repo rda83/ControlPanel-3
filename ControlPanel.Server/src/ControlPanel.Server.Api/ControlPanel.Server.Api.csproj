@@ -27,9 +27,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="App\Entities\Integrations\" />
     <Folder Include="App\Features\Auth\Lib\" />
     <Folder Include="App\Features\Auth\Config\" />
+    <Folder Include="App\Features\JobLogs\Integrations\Api\" />
   </ItemGroup>
 
 </Project>
