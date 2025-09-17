@@ -5,6 +5,7 @@ namespace ControlPanel.Server.Api.App.Features.JobLogs.Integrations.Lib
 {
     public interface IIntegrationsEventService
     {
-        Task SeedTestData(SeedTestDataRequest request);
+        Task<List<IntegrationEventDto>> GetAllAsync();
+        Task SeedTestData(SeedTestDataIntegrationEventsRequest request);
     }
 }

@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './jl-integrations.component.css'
 })
 export class JlIntegrationsComponent {
-
+    // Нужна локальная переменная integrationEvents$
 }

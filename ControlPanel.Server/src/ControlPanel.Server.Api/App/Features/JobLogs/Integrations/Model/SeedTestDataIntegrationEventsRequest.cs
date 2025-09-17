@@ -1,6 +1,6 @@
 ﻿namespace ControlPanel.Server.Api.App.Features.JobLogs.Integrations.Model
 {
-    public class SeedTestDataRequest
+    public class SeedTestDataIntegrationEventsRequest
     {
         public int Count { get; set; } = 0;
     }
