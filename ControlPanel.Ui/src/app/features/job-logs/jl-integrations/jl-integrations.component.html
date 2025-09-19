@@ -1,1 +1,26 @@
 <p>jl-integrations works!</p>
+
+<clr-datagrid>
+    <clr-dg-column>Ид</clr-dg-column>
+    <clr-dg-column>Вид интеграции ID</clr-dg-column>
+    <clr-dg-column>Начало</clr-dg-column>
+    <clr-dg-column>Завершение</clr-dg-column>
+    <clr-dg-column>Ид задачи</clr-dg-column>
+    <clr-dg-column>Успех</clr-dg-column>
+    <clr-dg-column>Время работы</clr-dg-column>
+    <clr-dg-column>Сообщение</clr-dg-column>
+
+  <clr-dg-row *ngFor="let event of integrationEvents$ | async">
+        <clr-dg-cell>{{ event.id }}</clr-dg-cell>
+        <clr-dg-cell>{{ event.typeIntegration }}</clr-dg-cell>
+        <clr-dg-cell>{{ event.started | date }}</clr-dg-cell>
+        <clr-dg-cell>{{ event.finished | date }}</clr-dg-cell>
+        <clr-dg-cell>{{ event.periodicTaskId }}</clr-dg-cell>
+        <clr-dg-cell>{{ event.success }}</clr-dg-cell>
+        <clr-dg-cell>{{ event.totalMilliseconds }}</clr-dg-cell>
+        <clr-dg-cell>{{ event.message }}</clr-dg-cell>
+  </clr-dg-row>
+
+  <clr-dg-footer>{{ countItems$ | async}} users</clr-dg-footer>
+
+</clr-datagrid>
