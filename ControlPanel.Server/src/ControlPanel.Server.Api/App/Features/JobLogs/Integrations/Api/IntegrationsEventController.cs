@@ -18,8 +18,8 @@ namespace ControlPanel.Server.Api.App.Features.JobLogs.Integrations.Api
 
         [HttpGet]
         [Authorize]
-        public async Task<IActionResult> GetAll([FromQuery] int skip = 1,
-            [FromQuery] int take = 20)
+        public async Task<IActionResult> GetAll([FromQuery] int skip = 0,
+            [FromQuery] int take = 10)
         {
             // TODO:
             // - пагинация
@@ -27,10 +27,11 @@ namespace ControlPanel.Server.Api.App.Features.JobLogs.Integrations.Api
             // - фильтрация
             // - обрезка (только нужные данные)
 
-            var result = await _integrationsEventService.GetAllAsync();
+            var response = await _integrationsEventService.GetAsync(skip, take);
 
-            //return NotFound();
-            return Ok(result.OrderBy(i => i.Id).Skip(skip).Take(take));
+            Thread.Sleep(500);
+
+            return Ok(response);
         }
 
 

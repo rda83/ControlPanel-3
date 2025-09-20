@@ -1,26 +1,32 @@
 <p>jl-integrations works!</p>
+<div class="limit-height">
+  <clr-datagrid (clrDgRefresh)="refresh($event)" [clrDgLoading]="(loading$ | async)!">
+      <clr-dg-column>Ид</clr-dg-column>
+      <clr-dg-column>Вид интеграции ID</clr-dg-column>
+      <clr-dg-column>Начало</clr-dg-column>
+      <clr-dg-column>Завершение</clr-dg-column>
+      <clr-dg-column>Ид задачи</clr-dg-column>
+      <clr-dg-column>Успех</clr-dg-column>
+      <clr-dg-column>Время работы</clr-dg-column>
+      <clr-dg-column>Сообщение</clr-dg-column>
 
-<clr-datagrid>
-    <clr-dg-column>Ид</clr-dg-column>
-    <clr-dg-column>Вид интеграции ID</clr-dg-column>
-    <clr-dg-column>Начало</clr-dg-column>
-    <clr-dg-column>Завершение</clr-dg-column>
-    <clr-dg-column>Ид задачи</clr-dg-column>
-    <clr-dg-column>Успех</clr-dg-column>
-    <clr-dg-column>Время работы</clr-dg-column>
-    <clr-dg-column>Сообщение</clr-dg-column>
+    <clr-dg-row *ngFor="let event of (integrationEventsItems$ | async)">
+          <clr-dg-cell>{{ event.id }}</clr-dg-cell>
+          <clr-dg-cell>{{ event.typeIntegration }}</clr-dg-cell>
+          <clr-dg-cell>{{ event.started | date }}</clr-dg-cell>
+          <clr-dg-cell>{{ event.finished | date }}</clr-dg-cell>
+          <clr-dg-cell>{{ event.periodicTaskId }}</clr-dg-cell>
+          <clr-dg-cell>{{ event.success }}</clr-dg-cell>
+          <clr-dg-cell>{{ event.totalMilliseconds }}</clr-dg-cell>
+          <clr-dg-cell>{{ event.message }}</clr-dg-cell>
+    </clr-dg-row>
 
-  <clr-dg-row *ngFor="let event of integrationEvents$ | async">
-        <clr-dg-cell>{{ event.id }}</clr-dg-cell>
-        <clr-dg-cell>{{ event.typeIntegration }}</clr-dg-cell>
-        <clr-dg-cell>{{ event.started | date }}</clr-dg-cell>
-        <clr-dg-cell>{{ event.finished | date }}</clr-dg-cell>
-        <clr-dg-cell>{{ event.periodicTaskId }}</clr-dg-cell>
-        <clr-dg-cell>{{ event.success }}</clr-dg-cell>
-        <clr-dg-cell>{{ event.totalMilliseconds }}</clr-dg-cell>
-        <clr-dg-cell>{{ event.message }}</clr-dg-cell>
-  </clr-dg-row>
-
-  <clr-dg-footer>{{ countItems$ | async}} users</clr-dg-footer>
-
-</clr-datagrid>
+    <clr-dg-footer>   
+      <clr-dg-pagination #pagination [clrDgPageSize]="10" [clrDgTotalItems]="(totalItems$ | async) ?? 1">
+        <clr-dg-page-size [clrPageSizeOptions]="[10, 20, 50, 100]">Элементов на стратенице</clr-dg-page-size>
+        {{ pagination.firstItem + 1 }} - {{ pagination.lastItem + 1 }} of
+        {{ totalItems$ | async }} строк
+      </clr-dg-pagination> 
+    </clr-dg-footer>
+  </clr-datagrid>
+</div>

@@ -2,6 +2,7 @@
 using Bogus;
 using ControlPanel.Server.Api.App.Entities.Integrations;
 using ControlPanel.Server.Api.App.Features.JobLogs.Integrations.Model;
+using ControlPanel.Server.Api.App.Shared.Model;
 using ControlPanel.Server.Api.App.Shared.Storage;
 using Microsoft.EntityFrameworkCore;
 
@@ -22,6 +23,25 @@ namespace ControlPanel.Server.Api.App.Features.JobLogs.Integrations.Lib
         {
             var entities = await _db.IntegrationEvents.ToListAsync();
             return _mapper.Map<List<IntegrationEventDto>>(entities);
+        }
+
+        public async Task<PagedResponse<IntegrationEventDto>> GetAsync(int skip = 0, int take = 10)
+        {
+            // Валидация параметров
+            // Ограничение максимального размера страницы - возвратить ошибку
+
+            var totalCount = await _db.IntegrationEvents.CountAsync();
+            var entities = await _db.IntegrationEvents
+                .OrderBy(i => i.Id)
+                .Skip(skip)
+                .Take(take)
+                .ToArrayAsync();
+
+            var result = new PagedResponse<IntegrationEventDto>();
+            result.Items = _mapper.Map<IntegrationEventDto[]>(entities);
+            result.Total = totalCount;
+
+            return result;
         }
 
         public async Task SeedTestData(SeedTestDataIntegrationEventsRequest request)

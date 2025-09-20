@@ -1,0 +1,14 @@
+@use '@cds/core/tokens/tokens.scss';
+
+.limit-height {
+  display: flex;
+  flex-direction: column;
+  height: 75vh;
+  box-sizing: border-box; /* учитывает padding и border в высоте */
+}
+
+.limit-height clr-datagrid {
+  flex: 1;
+  min-height: 0;
+  box-sizing: border-box;
+}

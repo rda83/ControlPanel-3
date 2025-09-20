@@ -1,8 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { JournalIntegrationsService } from './jl-integrations.component.service';
 import { CommonModule } from '@angular/common';
-import { ClrDatagridModule } from "@clr/angular";
-import { map, startWith } from 'rxjs';
+import { ClrDatagridModule, ClrDatagridStateInterface } from "@clr/angular";
+import { BehaviorSubject, map, Observable, of, skip, startWith } from 'rxjs';
+import { IntegrationEvent } from './models/integration-event.model';
 
 @Component({
   standalone: true,
@@ -13,12 +14,23 @@ import { map, startWith } from 'rxjs';
   styleUrl: './jl-integrations.component.css'
 })
 export class JlIntegrationsComponent {
-    
+
     private service = inject(JournalIntegrationsService);
-    readonly integrationEvents$ = this.service.integrationEvents$;
-    readonly countItems$ = this.service.integrationEvents$
-      .pipe(
-          map(events => events?.length || 0),  
-          startWith(0)
-      ); 
+    readonly integrationEventsItems$ : Observable<IntegrationEvent[]>;
+
+
+    totalItems$ : Observable<number>;
+    loading$ = this.service.loadingSubject.asObservable();
+
+    constructor(){
+      this.integrationEventsItems$ = this.service.getAllItemsSubject().asObservable();
+      this.totalItems$ = this.service.getTotalCountSubject().asObservable();
+    }
+
+    refresh(state: ClrDatagridStateInterface){ 
+      this.service.loadingSubject.next(true);
+      let skip = (state.page?.from ?? -1) > 0  ? (state.page?.from ?? -1) : 0;
+      let take = state.page?.size ?? 0;
+      this.service.loadData(skip, take)
+    }
 }
