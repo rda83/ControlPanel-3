@@ -3,7 +3,7 @@
 .limit-height {
   display: flex;
   flex-direction: column;
-  height: 75vh;
+  height: 82vh;
   box-sizing: border-box; /* учитывает padding и border в высоте */
 }
 

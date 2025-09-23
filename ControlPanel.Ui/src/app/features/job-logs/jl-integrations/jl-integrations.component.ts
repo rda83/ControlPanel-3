@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { JournalIntegrationsService } from './jl-integrations.component.service';
 import { CommonModule } from '@angular/common';
-import { ClrDatagridModule, ClrDatagridStateInterface } from "@clr/angular";
+import { ClrDatagridModule, ClrDatagridStateInterface, ClrIconModule } from "@clr/angular";
 import { BehaviorSubject, map, Observable, of, skip, startWith } from 'rxjs';
 import { IntegrationEvent } from './models/integration-event.model';
 
@@ -9,7 +9,7 @@ import { IntegrationEvent } from './models/integration-event.model';
   standalone: true,
   selector: 'app-jl-integrations',
   providers:[JournalIntegrationsService],
-  imports: [CommonModule, ClrDatagridModule],
+  imports: [CommonModule, ClrDatagridModule, ClrIconModule],
   templateUrl: './jl-integrations.component.html',
   styleUrl: './jl-integrations.component.css'
 })
@@ -28,9 +28,16 @@ export class JlIntegrationsComponent {
     }
 
     refresh(state: ClrDatagridStateInterface){ 
+      
+
+      console.log(state);
+      
+      
       this.service.loadingSubject.next(true);
       let skip = (state.page?.from ?? -1) > 0  ? (state.page?.from ?? -1) : 0;
       let take = state.page?.size ?? 0;
+
+
       this.service.loadData(skip, take)
     }
 }
