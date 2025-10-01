@@ -3,6 +3,10 @@
 @import '@clr/ui/clr-ui.min.css';
 
 
+.clr-input-group {
+   background-color: #e4e7ec;
+   width: 100%;
+}
 
 .clr-input,
 .clr-input-wrapper {
