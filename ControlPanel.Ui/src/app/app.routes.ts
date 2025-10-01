@@ -185,7 +185,7 @@ export const routes: Routes = [
     { path: 'login', component: LoginComponent },
 
     { path: '', component: WeatherForecastComponent },
-    // { path: '', component: EditContactComponent },
+    { path: 'edit-contact', component: EditContactComponent },
     
     
 

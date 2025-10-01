@@ -1,1 +1,50 @@
-<p>sched-editor works!</p>
+
+
+
+<div class="content-container">
+  <div class="content-area">
+    
+
+    <form clrForm [formGroup]="contactForm" (ngSubmit)="saveItem()">
+
+          <clr-input-container class="clr-input-container">
+            <!-- <label>Test 5</label> -->
+            <input clrInput class="clr-input" />
+            <!-- <clr-control-helper>Helper text that shows while it is pristine and valid</clr-control-helper> -->
+            <!-- <clr-control-error>Error message that appears after focus is lost and control is invalid -->
+            <!-- </clr-control-error> -->
+          </clr-input-container>
+
+
+
+
+      <!-- <div class="clr-row">
+        <div class="clr-col">
+          <clr-input-container>
+            <label>Имя пайплайна</label>
+            <input clrInput type="text" class="clr-input" formControlName = "name" placeholder="" />  
+          </clr-input-container>
+        </div>
+        <div class="clr-col">
+          <clr-input-container>
+            <label>Расписание</label>
+            <input class="clr-input" formControlName = "cronExpression" placeholder="" />  
+          </clr-input-container>
+        </div>
+        <div class="clr-break-row"></div>
+        <div class="clr-col">
+          <clr-input-container>
+            <label>Описание</label>
+            <input class="clr-input" formControlName = "description" placeholder="" />  
+          </clr-input-container>
+        </div>
+        <div class="clr-col">
+          <clr-input-container>
+            <label>Заблокирован</label>
+            <input class="clr-input" formControlName = "blocked" placeholder="" />  
+          </clr-input-container>
+        </div>
+      </div> -->
+    </form>
+  </div>
+</div>
