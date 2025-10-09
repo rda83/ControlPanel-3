@@ -1,0 +1,85 @@
+/* pipeline-form.component.css */
+
+
+.grid-table-container {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.grid-table {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  max-height: 400px; /* Общая максимальная высота */
+}
+
+.grid-header {
+  display: grid;
+  grid-template-columns: 80px 1fr 1fr 100px 120px;
+  background: #fafafa;
+  border-bottom: 1px solid #ccc;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.grid-header .grid-cell {
+  padding: 0.5rem 0.25rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  min-height: 2rem;
+}
+
+.grid-body {
+  display: block; /* Важно: block для прокрутки */
+  max-height: 350px; /* Высота тела = общая высота - заголовок */
+  overflow-y: auto;
+}
+
+.grid-row {
+  display: grid;
+  grid-template-columns: 80px 1fr 1fr 100px 120px;
+  min-height: 2.5rem;
+}
+
+.grid-row:hover .grid-cell {
+  background: #f5f5f5;
+}
+
+.grid-cell {
+  padding: 0.25rem;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  min-height: 2.5rem;
+}
+
+/* Стили для инпутов */
+.grid-cell clr-input-container {
+  width: 100%;
+}
+
+.grid-cell .clr-input {
+  width: 100%;
+  min-width: 0;
+}
+
+/* Колонка с кнопкой */
+.grid-cell:last-child {
+  justify-content: center;
+}
+
+/* Скроллбар */
+.grid-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.grid-body::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
+
+.grid-body::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}

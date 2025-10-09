@@ -3,8 +3,8 @@
 @import '@clr/ui/clr-ui.min.css';
 
 
-.clr-input-group {
-   background-color: #e4e7ec;
+ .clr-input-group {
+   /* background-color: #e4e7ec; */
    width: 100%;
 }
 
@@ -12,10 +12,4 @@
 .clr-input-wrapper {
   max-width: 100%;
   width: 100%;
-}
-
-.clr-control-container, 
-.clr-input-wrapper.clr-input {
-  padding-left: 0;
-  padding-right: 0;
 }

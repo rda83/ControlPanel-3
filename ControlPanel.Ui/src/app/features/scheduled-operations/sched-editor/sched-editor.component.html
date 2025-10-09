@@ -1,38 +1,99 @@
-      <form class="clr-form">
+<form class="clr-form" [formGroup]="pilelineForm">
+  <div class="clr-row">
+    <div class="clr-col-12">
+      <h3>Редактор регламентной операции</h3>
+    </div>
+  </div>
+  
+  <div class="clr-row">
+    <div class="clr-col-6">
+      <clr-input-container>
+        <label>Имя пайплайна</label>
+        <input clrInput class="clr-input" formControlName = "name" placeholder="Введите наименование операции"/>
+      </clr-input-container>
+    </div>
 
-        <div class="clr-row">
+    <div class="clr-col-6">
+      <clr-input-container>
+        <label>Расписание</label>
+        <input clrInput class="clr-input" formControlName = "cronExpression" placeholder="e.g., 0 0 * * *"/>
+      </clr-input-container>
+    </div>
+  </div>        
+   
+  <div class="clr-row">
+    <div class="clr-col-12">
+      <clr-input-container>
+        <label>Описание</label>
+        <input clrInput class="clr-input" formControlName = "description" placeholder="Введите краткое описание"/>
+      </clr-input-container>
+    </div>
+  </div>
 
-          <div class="clr-col">
+  <div class="clr-row">
+    <div class="clr-col-12">
+      <clr-input-container>
+        <label>Заблокирован</label>
+        <input clrInput class="clr-input" formControlName = "blocked" />
+      </clr-input-container>
+    </div>
+  </div>
+
+  <div class="clr-row">
+    <div class="clr-col-12">
+       <h4>Элементы операции</h4>
+    </div>
+
+    <div class="btn-group">
+      <button type="button" class="btn btn-primary btn-sm" (click)="addPipelineItem()">
+        <clr-icon shape="plus"></clr-icon> Add Item
+      </button>
+    </div>
+  </div>
+
+  
+  <div class="grid-table-container" *ngIf="pilelineForm.controls.pipelineItems.controls.length > 0">
+    <div class="grid-table">
+
+      <div class="grid-header">
+        <div class="grid-cell">Order</div>
+        <div class="grid-cell">Description</div>
+        <div class="grid-cell">Options</div>
+        <div class="grid-cell">Blocked</div>
+        <div class="grid-cell">Actions</div>
+      </div>
+      
+      <div class="grid-body" formArrayName="pipelineItems">
+        <div class="grid-row" *ngFor="let item of pilelineForm.controls.pipelineItems.controls; let i = index" [formGroupName]="i">
+          <div class="grid-cell">
             <clr-input-container>
-              <label>Имя пайплайна</label>
-              <input clrInput class="clr-input" formControlName = "name"/>
+              <input clrInput class="clr-input" formControlName="sortOrder" />
             </clr-input-container>
           </div>
-
-          <div class="clr-col">
+          <div class="grid-cell">
             <clr-input-container>
-              <label>Расписание</label>
-              <input clrInput class="clr-input" formControlName = "cronExpression" />
+              <input clrInput class="clr-input" formControlName="description" />
             </clr-input-container>
           </div>
-          
-          <div class="clr-break-row"></div>
-
-          <div class="clr-col">
+          <div class="grid-cell">
             <clr-input-container>
-              <label>Описание</label>
-              <input clrInput class="clr-input" formControlName = "description" />
+              <input clrInput class="clr-input" formControlName="options" />
             </clr-input-container>
           </div>
-
-          <div class="clr-col">
+          <div class="grid-cell">
             <clr-input-container>
-              <label>Заблокирован</label>
-              <input clrInput class="clr-input" formControlName = "blocked" />
+              <input clrInput class="clr-input" formControlName="blocked" />
             </clr-input-container>
           </div>
-
-
+          <div class="grid-cell">
+            <button type="button" class="btn btn-sm btn-danger" (click)="removePipelineItem(i)">
+              <clr-icon shape="times"></clr-icon> Удалить
+            </button>
+          </div>
         </div>
+      </div>
+    </div>
+  </div>
 
-      </form>
+
+</form>
