@@ -14,6 +14,9 @@ import { Pipeline } from './pipeline.model';
 
 
 export class SchedEditorComponent implements OnInit{
+
+
+  isSubmitting: false | undefined;
    
   removePipelineItem(index: number) {
     this.pilelineForm.controls.pipelineItems.removeAt(index);
@@ -188,4 +191,9 @@ export class SchedEditorComponent implements OnInit{
   saveItem() {
     throw new Error('Method not implemented.');
   }
+  
+  onCancel() {
+    throw new Error('Method not implemented.');
+  }
+
 }
